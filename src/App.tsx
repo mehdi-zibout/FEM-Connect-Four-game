@@ -8,6 +8,8 @@ import { ReactComponent as CounterYellow } from "./assets/counter-yellow-large.s
 import { ReactComponent as MarkerYellow } from "./assets/marker-yellow.svg";
 import { ReactComponent as MarkerRed } from "./assets/marker-red.svg";
 import MainMenu from "./Views/MainMenu";
+import PauseModal from "./components/PauseModal";
+import Modal from "./components/Modal";
 
 const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
 function App() {
@@ -67,7 +69,13 @@ function App() {
           <BackgroundWhite className="absolute top-0 " />
         </div> */}
         <MainMenu />
+        <button onClick={() => setIsPlayer1Turn(true)}>show modal</button>
       </main>
+      {isPlayer1Turn && (
+        <Modal setShowModal={setIsPlayer1Turn}>
+          <PauseModal />
+        </Modal>
+      )}
     </>
   );
 
