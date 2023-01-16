@@ -7,6 +7,7 @@ import { ReactComponent as CounterRed } from "./assets/counter-red-large.svg";
 import { ReactComponent as CounterYellow } from "./assets/counter-yellow-large.svg";
 import { ReactComponent as MarkerYellow } from "./assets/marker-yellow.svg";
 import { ReactComponent as MarkerRed } from "./assets/marker-red.svg";
+import MainMenu from "./Views/MainMenu";
 
 const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
 function App() {
@@ -15,8 +16,8 @@ function App() {
   const [hoveringOver, setHoveringOver] = useState(0);
   return (
     <>
-      <div className="text-hl bg-purple p-10 h-screen">
-        <div className="relative ">
+      <main className="bg-purple w-screen overflow-hidden h-screen flex justify-center items-center">
+        {/* <div className="relative ">
           <BackgroundBlack className="absolute  top-0 " />
           <div className="absolute w-full h-full overflow-hidden">
             <CounterRed
@@ -64,8 +65,9 @@ function App() {
             )}
           </div>
           <BackgroundWhite className="absolute top-0 " />
-        </div>
-      </div>
+        </div> */}
+        <MainMenu />
+      </main>
     </>
   );
 
