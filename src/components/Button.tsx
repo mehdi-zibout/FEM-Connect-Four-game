@@ -16,7 +16,10 @@ function Button({
 }: ButtonProps) {
   return (
     <Card
-      className={`${getButtonStyles(bgColor, Icon)} text-hm  ${className} `}
+      className={`${getButtonStyles(
+        bgColor,
+        Icon
+      )} text-hm  ${className} transition duration-300 `}
     >
       <button
         className={`w-full h-full p-5 uppercase ${

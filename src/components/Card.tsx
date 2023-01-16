@@ -1,11 +1,10 @@
-import { ReactElement } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
-function Card({ children, className }: CardProps) {
+function Card({ children, className, ...props }: CardProps) {
   return (
     <div
-      className={`border-black rounded-[20px] shadow-card border-[3px] ${
-        className || "bg-white text-black"
-      }`}
+      className={`border-black rounded-[20px] shadow-card border-[3px] ${className}`}
+      {...props}
     >
       {children}
     </div>
@@ -14,7 +13,7 @@ function Card({ children, className }: CardProps) {
 
 export default Card;
 
-type CardProps = {
-  children: ReactElement;
-  className?: string;
-};
+type CardProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
