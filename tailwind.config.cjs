@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      tablet: "700px",
+      desktop: "1100px",
+    },
     fontFamily: {
       sans: ["Space Grotesk", "sans-serif"],
     },
@@ -20,7 +24,12 @@ module.exports = {
       hxs: ["1rem", { fontWeight: 700, lineHeight: "1.31rem" }],
       body: ["1rem", { fontWeight: 500, lineHeight: "1.31rem" }],
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        card: "0px 10px 0px #000000",
+        "card-purple": "0px 10px 0px #5C2DD5",
+      },
+    },
   },
   plugins: [],
 };
