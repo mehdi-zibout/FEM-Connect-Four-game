@@ -7,10 +7,10 @@ import { useState } from "react";
 import FillBoard from "./FillBoard";
 import Marker from "./Marker";
 
-const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
+const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
 
 function Board({ isPlayer1Turn, setIsPlayer1Turn }: BoardProps) {
-  const [gameState, setGameState] = useState(newGame);
+  const [gameState, setGameState] = useState(NEWGAME);
   const [hoveringOver, setHoveringOver] = useState(0);
   return (
     <div className="relative w-fit mx-auto z-10">
