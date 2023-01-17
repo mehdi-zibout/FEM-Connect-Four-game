@@ -6,11 +6,18 @@ import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import FillBoard from "./FillBoard";
 import Marker from "./Marker";
-
+import { findWinner } from "../logic";
 const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
 
 function Board({ isPlayer1Turn, setIsPlayer1Turn }: BoardProps) {
-  const [gameState, setGameState] = useState(NEWGAME);
+  const [gameState, setGameState] = useState([
+    [0, 0, 1, -1, 0, 0, 0],
+    [0, 0, -1, 1, 0, 0, 0],
+    [0, 0, 1, -1, 0, 0, 0],
+    [-1, 1, -1, 1, -1, 0, 0],
+    [-1, -1, 1, -1, 1, 0, 0],
+    [-1, -1, -1, 1, 1, 0, 0],
+  ]);
   const [hoveringOver, setHoveringOver] = useState(0);
   return (
     <div className="relative w-fit mx-auto z-10">
@@ -36,16 +43,18 @@ function Board({ isPlayer1Turn, setIsPlayer1Turn }: BoardProps) {
 
   function handleOnClick(i: number) {
     const newGameState = [];
-    let madeMove = false;
+    let madeMove: false | number = false;
     for (let index = gameState.length - 1; index >= 0; index--) {
       const newRow = [...gameState[index]];
-      if (gameState[index][i] == 0 && !madeMove) {
-        madeMove = true;
-        newRow[i] = isPlayer1Turn ? 2 : 3;
+      if (gameState[index][i] == 0 && madeMove === false) {
+        madeMove = index;
+        newRow[i] = isPlayer1Turn ? 1 : -1;
       }
       newGameState.push(newRow);
     }
     setGameState(newGameState.reverse());
+    let winner = findWinner(gameState, isPlayer1Turn, madeMove as number, i);
+    if (winner) console.log("winner is ", winner);
     setIsPlayer1Turn(!isPlayer1Turn);
   }
 }

@@ -42,7 +42,7 @@ function GameView() {
         </div>
         <div className="">
           <div className="hidden desktop:block">
-            <header className="flex justify-between items-center mb-12">
+            <header className="flex justify-between items-center mb-14">
               <MiniButton className="w-[108px]">Menu</MiniButton>
               <Logo className="w-10 h-10 tablet:w-[52px] tablet:h-[52px]" />
               <MiniButton className="w-[108px]">restart</MiniButton>
