@@ -27,8 +27,8 @@ module.exports = {
     extend: {
       keyframes: {
         "slide-in": {
-          "0%": { transform: "translateY(-900%)" },
-          "110%": { transform: "translateY(0)" },
+          "0%": { transform: "translateY(-650%)" },
+          "100%": { transform: "translateY(0)" },
         },
       },
       animation: {

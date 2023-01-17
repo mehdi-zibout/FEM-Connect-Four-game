@@ -5,14 +5,14 @@ function Marker({ isPlayer1Turn, hoveringOver }: MarkerProps) {
   if (!isPlayer1Turn)
     return (
       <MarkerYellow
-        className="absolute -top-10 left-[35px] transition-transform duration-500"
+        className="absolute -top-10 left-[35px] transition-transform duration-500 hidden desktop:block"
         style={{ transform: `translateX(${88 * hoveringOver}px)` }}
       />
     );
   else
     return (
       <MarkerRed
-        className="absolute -top-10 left-[35px] transition-transform duration-500"
+        className="absolute -top-10 left-[35px] transition-transform duration-500 hidden desktop:block"
         style={{ transform: `translateX(${88 * hoveringOver}px)` }}
       />
     );

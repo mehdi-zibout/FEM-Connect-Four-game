@@ -1,7 +1,7 @@
 import { ReactComponent as BackgroundWhite } from "../assets/board-layer-white-large.svg";
 import { ReactComponent as BackgroundBlack } from "../assets/board-layer-black-large.svg";
-import { ReactComponent as CounterRed } from "../assets/counter-red-large.svg";
-import { ReactComponent as CounterYellow } from "../assets/counter-yellow-large.svg";
+import { ReactComponent as BackgroundWhiteMobile } from "../assets/board-layer-white-small.svg";
+import { ReactComponent as BackgroundBlackMobile } from "../assets/board-layer-black-small.svg";
 import { useState } from "react";
 import FillBoard from "./FillBoard";
 import Marker from "./Marker";
@@ -13,12 +13,14 @@ function Board() {
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(false);
   const [hoveringOver, setHoveringOver] = useState(0);
   return (
-    <div className="relative ">
+    <div className="relative">
       <Marker hoveringOver={hoveringOver} isPlayer1Turn={isPlayer1Turn} />
-      <BackgroundBlack className="  " />
+      <BackgroundBlack className="hidden tablet:block" />
+      <BackgroundBlackMobile className="tablet:hidden" />
       <FillBoard gameState={gameState} />
 
-      <BackgroundWhite className="absolute inset-0 " />
+      <BackgroundWhite className="absolute inset-0 hidden tablet:block" />
+      <BackgroundWhiteMobile className="absolute inset-0 tablet:hidden" />
       <div className="absolute inset-0 -top-10 left-[20px] grid grid-cols-7 gap-[5px]">
         {new Array(7).fill(0).map((col, i) => (
           <button

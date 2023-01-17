@@ -1,17 +1,26 @@
 import { ReactComponent as CounterRed } from "../assets/counter-red-large.svg";
 import { ReactComponent as CounterYellow } from "../assets/counter-yellow-large.svg";
+import { ReactComponent as CounterRedMobile } from "../assets/counter-red-small.svg";
+import { ReactComponent as CounterYellowMobile } from "../assets/counter-yellow-small.svg";
+import { useEffect, useState } from "react";
 
 function FillBoard({ gameState }: FillBoardProps) {
+  const [width, setWidth] = useState(() => window.innerWidth);
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [window.innerWidth]);
+  const CR = width > 620 ? CounterRed : CounterRedMobile;
+  const CY = width > 620 ? CounterYellow : CounterYellowMobile;
   return (
-    <div className="absolute left-[17px] top-[17px] overflow-hidden  grid grid-cols-7 grid-rows-6 gap-x-[18px] gap-y-[13px]">
+    <div className="absolute left-[7px] top-[5px] gap-y-[0.9px] gap-x-[5.6px] tablet:left-[17px] tablet:top-[17px] overflow-hidden  grid grid-cols-7 grid-rows-6 tablet:gap-x-[18px] tablet:gap-y-[13px] ">
       {gameState.map((row, i) =>
         row.map((cell, j) =>
           cell === 2 ? (
-            <CounterRed className="animate-slide-in" key={`${i}${j}`} />
+            <CR key={`${i},${j}`} className="animate-slide-in " />
           ) : cell === 3 ? (
-            <CounterYellow className="animate-slide-in" key={`${i}${j}`} />
+            <CY key={`${i},${j}`} className="animate-slide-in" />
           ) : (
-            <div className=""></div>
+            <div key={`${i},${j}`}></div>
           )
         )
       )}
