@@ -10,6 +10,7 @@ import { ReactComponent as MarkerRed } from "./assets/marker-red.svg";
 import MainMenu from "./Views/MainMenu";
 import PauseModal from "./components/PauseModal";
 import Modal from "./components/Modal";
+import Board from "./components/Board";
 
 const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
 function App() {
@@ -18,7 +19,7 @@ function App() {
   const [hoveringOver, setHoveringOver] = useState(0);
   return (
     <>
-      <main className="bg-purple w-screen overflow-hidden h-screen flex justify-center items-center">
+      <main className="bg-purple w-screen h-screen overflow-hidden flex justify-center items-center">
         {/* <div className="relative ">
           <BackgroundBlack className="absolute  top-0 " />
           <div className="absolute w-full h-full overflow-hidden">
@@ -68,14 +69,16 @@ function App() {
           </div>
           <BackgroundWhite className="absolute top-0 " />
         </div> */}
-        <MainMenu />
-        <button onClick={() => setIsPlayer1Turn(true)}>show modal</button>
+        <Board />
       </main>
+      {/* <MainMenu />
+        <button onClick={() => setIsPlayer1Turn(true)}>show modal</button>
+      
       {isPlayer1Turn && (
         <Modal setShowModal={setIsPlayer1Turn}>
           <PauseModal />
         </Modal>
-      )}
+      )} */}
     </>
   );
 

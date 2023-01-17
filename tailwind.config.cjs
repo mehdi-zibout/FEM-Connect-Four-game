@@ -3,7 +3,7 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      tablet: "600px",
+      tablet: "630px",
       desktop: "1100px",
     },
     fontFamily: {
@@ -25,6 +25,15 @@ module.exports = {
       body: ["1rem", { fontWeight: 500, lineHeight: "1.31rem" }],
     },
     extend: {
+      keyframes: {
+        "slide-in": {
+          "0%": { transform: "translateY(-900%)" },
+          "110%": { transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "slide-in": "slide-in 1s ease-out",
+      },
       boxShadow: {
         card: "0px 10px 0px #000000",
         "card-purple": "0px 10px 0px #5C2DD5",
