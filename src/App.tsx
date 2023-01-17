@@ -11,6 +11,7 @@ import MainMenu from "./Views/MainMenu";
 import PauseModal from "./components/PauseModal";
 import Modal from "./components/Modal";
 import Board from "./components/Board";
+import GameView from "./Views/GameView";
 
 const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
 function App() {
@@ -69,7 +70,8 @@ function App() {
           </div>
           <BackgroundWhite className="absolute top-0 " />
         </div> */}
-        <Board />
+        {/* <Board /> */}
+        <GameView />
       </main>
       {/* <MainMenu />
         <button onClick={() => setIsPlayer1Turn(true)}>show modal</button>
@@ -95,17 +97,6 @@ function App() {
     }
     setGame(newGameState.reverse());
     setIsPlayer1Turn(!isPlayer1Turn);
-    // setGame(
-    //   game.map((row) => {
-    //     if (!foundIt && row[i] == 0) {
-    //       const updatedRow = [...row];
-    //       updatedRow[i] = isPlayer1Turn ? 2 : 3;
-    //       foundIt = true;
-    //       return updatedRow;
-    //     }
-    //     return row;
-    //   })
-    // );
   }
 }
 
