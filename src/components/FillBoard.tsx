@@ -12,7 +12,7 @@ function FillBoard({ gameState }: FillBoardProps) {
   const CR = width > 620 ? CounterRed : CounterRedMobile;
   const CY = width > 620 ? CounterYellow : CounterYellowMobile;
   return (
-    <div className="absolute left-[7px] top-[5px] gap-y-[0.9px] gap-x-[5.6px] tablet:left-[17px] tablet:top-[17px] overflow-hidden  grid grid-cols-7 grid-rows-6 tablet:gap-x-[18px] tablet:gap-y-[13px] ">
+    <div className="absolute left-[7px] -top-[2px] gap-y-[0.9px] gap-x-[5.6px] tablet:left-[17px] tablet:top-[5px] overflow-hidden  grid grid-cols-7 grid-rows-6 tablet:gap-x-[18px] tablet:gap-y-[13px] ">
       {gameState.map((row, i) =>
         row.map((cell, j) =>
           cell === 2 ? (
