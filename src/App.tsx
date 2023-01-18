@@ -17,23 +17,9 @@ import RulesView from "./Views/RulesView";
 function App() {
   const [matchNumber, setMatchNumber] = useState(0);
   const [isAgainstCPU, setIsAgainstCPU] = useState(false);
-  const [view, setView] = useState(0);
+  const [view, setView] = useState(1);
   return (
     <>
-      {/* <main className="bg-purple w-screen h-screen overflow-x-hidden flex justify-center items-center">
-        {view === 0 ? (
-          <MainMenu setIsAgainstCPU={setIsAgainstCPU} setView={setView} />
-        ) : view === 1 ? (
-          <GameView
-            isAgainstCPU={isAgainstCPU}
-            key={matchNumber}
-            restart={setMatchNumber}
-            setView={setView}
-          />
-        ) : (
-          <RulesView setView={setView} />
-        )}
-      </main> */}
       <main className="bg-purple h-full min-h-screen flex justify-center items-center">
         {view === 0 ? (
           <MainMenu setIsAgainstCPU={setIsAgainstCPU} setView={setView} />
