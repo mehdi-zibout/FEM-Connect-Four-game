@@ -38,7 +38,7 @@ function Board({
     }
   }, [isPlayer1Turn]);
   return (
-    <div className="relative w-fit mx-auto z-10">
+    <div className="relative w-fit mx-auto z-10 ">
       <Marker
         className={`${
           isGameEnded || (isAgainstCPU && !isPlayer1Turn) ? "invisible" : ""

@@ -20,7 +20,21 @@ function App() {
   const [view, setView] = useState(0);
   return (
     <>
-      <main className="bg-purple w-screen h-screen overflow-hidden flex justify-center items-center">
+      {/* <main className="bg-purple w-screen h-screen overflow-x-hidden flex justify-center items-center">
+        {view === 0 ? (
+          <MainMenu setIsAgainstCPU={setIsAgainstCPU} setView={setView} />
+        ) : view === 1 ? (
+          <GameView
+            isAgainstCPU={isAgainstCPU}
+            key={matchNumber}
+            restart={setMatchNumber}
+            setView={setView}
+          />
+        ) : (
+          <RulesView setView={setView} />
+        )}
+      </main> */}
+      <main className="bg-purple h-full min-h-screen flex justify-center items-center">
         {view === 0 ? (
           <MainMenu setIsAgainstCPU={setIsAgainstCPU} setView={setView} />
         ) : view === 1 ? (

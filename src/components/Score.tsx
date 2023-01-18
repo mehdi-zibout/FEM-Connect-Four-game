@@ -5,7 +5,7 @@ function Score({ score, name, Icon, isReverse, className }: ScoreProps) {
   return (
     <>
       <Card
-        className={`bg-white h-fit desktop:w-fit desktop:block desktop:pt-11 desktop:pb-4 text-black text-center px-9 py-2 relative tablet:flex tablet:justify-between tablet:items-center  tablet:w-[296px] 
+        className={`bg-white min-w-[169px] h-fit desktop:w-fit desktop:min-w-[141px] desktop:block desktop:pt-11 desktop:pb-4 text-black text-center px-9 py-2 relative tablet:flex tablet:justify-between tablet:items-center  tablet:w-[296px] 
         ${isReverse ? "tablet:flex-row-reverse" : ""}  ${className}`}
       >
         <div className="text-hxs uppercase">{name}</div>

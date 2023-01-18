@@ -10,7 +10,7 @@ function FillBoard({ gameState, focusedDiscs }: FillBoardProps) {
             <div className="relative" key={`${i},${j}`}>
               <CounterRed className="animate-slide-in w-[41px] h-[46px] tablet:w-[70px] tablet:h-[75px]" />
               {inFocusedDiscs(i, j) && (
-                <div className="absolute animate-fade-in  inset-0 m-auto -top-1 border-[6px] rounded-full border-white w-8 h-8"></div>
+                <div className="absolute animate-fade-in  inset-0 m-auto -top-1 border-[6px] rounded-full border-white w-5 h-5 tablet:w-8 tablet:h-8"></div>
               )}
             </div>
           ) : cell === -1 ? (

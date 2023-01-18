@@ -27,9 +27,9 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
   }, [isGameEnded]);
   return (
     <>
-      <div className="pt-12 px-5 tablet:px-16 desktop:pt-14 desktop:px-0 tablet:pt-8 w-full h-full relative">
+      <div className="pt-12 px-5 min-h-screen tablet:px-16 desktop:pt-14 desktop:px-0 tablet:pt-8 w-full h-full  relative ">
         {/* TABLET VIEW */}
-        <div className="desktop:hidden ">
+        <div className="desktop:hidden relative z-10">
           <header className="flex justify-between items-center tablet:w-[631px] mx-auto w-[335px]">
             <MiniButton onClick={() => setShowMenu(true)} className="w-[108px]">
               Menu
@@ -44,7 +44,7 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
               restart
             </MiniButton>
           </header>
-          <div className="flex justify-center items-center my-12 ">
+          <div className="flex justify-center items-center  my-12 ">
             <Score
               name="player 1"
               score={playersScore[1]}
@@ -61,7 +61,7 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
         </div>
         {/* DESKTOP VIEW */}
 
-        <div className="desktop:flex items-center justify-center ">
+        <div className="desktop:flex items-center justify-center relative z-10">
           <div className="hidden desktop:block">
             <Score
               name="player 1"
@@ -72,7 +72,7 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
           </div>
           <div className="">
             <div className="hidden desktop:block">
-              <header className="flex justify-between items-center mb-14">
+              <header className="flex justify-between items-center desktop:mb-14">
                 <MiniButton
                   onClick={() => setShowMenu(true)}
                   className="w-[108px]"
@@ -101,7 +101,7 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
           </div>
           <Score
             name={isAgainstCPU ? "cpu" : "player 2"}
-            className="ml-16 desktop:block hidden"
+            className="ml-16 desktop:block hidden tablet:hidden"
             score={playersScore[2]}
             Icon={isAgainstCPU ? CPU : PlayerTwo}
             isReverse
@@ -109,7 +109,7 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
         </div>
         {/* SHARED */}
         {isGameEnded ? (
-          <Card className="relative z-10 py-4 px-[4.5rem] bg-white text-center mx-auto right-0 left-0 w-fit -top-9 tablet:-top-[155px] desktop:-top-16">
+          <Card className="relative z-10 py-4 px-[4.5rem] bg-white text-center mx-auto right-0 left-0 w-fit -top-9 tablet:-top-16  ">
             <h2 className="uppercase text-hxs">
               {isGameEnded === 1
                 ? "Player 1"
@@ -139,7 +139,21 @@ function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
             isPlayer1Turn={isPlayer1Turn}
           />
         )}
-        <div className="absolute  bottom-0 w-full h-[calc(100%-570px)] tablet:h-[calc(100%-790px)] desktop:h-[calc(100vh-700px)] bg-dark-purple rounded-t-[60px] -mx-5 tablet:-mx-16 desktop:-mx-0"></div>
+        <div className="w-full  h-full  absolute inset-0 overflow-hidden">
+          <div
+            className={`absolute transition-colors duration-[3s] top-[565px] tablet:top-[790px] desktop:top-[700px]  left-0 right-0 h-full   rounded-t-[60px] 
+              ${
+                isGameEnded
+                  ? isGameEnded === 1
+                    ? "bg-red"
+                    : isGameEnded === -1
+                    ? "bg-yellow"
+                    : "bg-white"
+                  : "bg-dark-purple"
+              }
+              `}
+          ></div>
+        </div>
       </div>
       {showMenu && (
         <Modal setShowModal={setShowMenu}>
