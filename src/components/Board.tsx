@@ -59,6 +59,11 @@ function Board({
       newGameState.push(newRow);
     }
     setGameState(newGameState.reverse());
+    if (madeMove === 0) {
+      if (newGameState[0].every((x) => x !== 0)) {
+        setIsGameEnded(true);
+      }
+    }
     let winner = findWinner(gameState, isPlayer1Turn, madeMove as number, i);
     if (winner.winner) {
       setFocusedDiscs((focusedDiscs) =>

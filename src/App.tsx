@@ -15,6 +15,7 @@ import GameView from "./Views/GameView";
 
 const newGame: number[][] = new Array(6).fill(new Array(7).fill(0));
 function App() {
+  const [matchNumber, setMatchNumber] = useState(0);
   const [game, setGame] = useState(newGame);
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(false);
   const [hoveringOver, setHoveringOver] = useState(0);
@@ -71,7 +72,7 @@ function App() {
           <BackgroundWhite className="absolute top-0 " />
         </div> */}
         {/* <Board /> */}
-        <GameView />
+        <GameView key={matchNumber} restart={setMatchNumber} />
       </main>
       {/* <MainMenu />
         <button onClick={() => setIsPlayer1Turn(true)}>show modal</button>
