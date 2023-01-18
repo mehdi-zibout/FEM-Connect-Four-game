@@ -17,7 +17,7 @@ import RulesView from "./Views/RulesView";
 function App() {
   const [matchNumber, setMatchNumber] = useState(0);
   const [isAgainstCPU, setIsAgainstCPU] = useState(false);
-  const [view, setView] = useState(1);
+  const [view, setView] = useState(0);
   return (
     <>
       <main className="bg-purple h-full min-h-screen flex justify-center items-center">
