@@ -30,7 +30,7 @@ function MainMenu({ setView, setIsAgainstCPU }: MainMenuProps) {
       >
         play vs player
       </Button>
-      <Button alignStart bgColor="white">
+      <Button onClick={() => setView(3)} alignStart bgColor="white">
         Game Rules
       </Button>
     </Card>

@@ -12,6 +12,7 @@ import PauseModal from "./components/PauseModal";
 import Modal from "./components/Modal";
 import Board from "./components/Board";
 import GameView from "./Views/GameView";
+import RulesView from "./Views/RulesView";
 
 function App() {
   const [matchNumber, setMatchNumber] = useState(0);
@@ -30,7 +31,7 @@ function App() {
             setView={setView}
           />
         ) : (
-          <MainMenu setIsAgainstCPU={setIsAgainstCPU} setView={setView} />
+          <RulesView setView={setView} />
         )}
       </main>
     </>
