@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [FEM](https://www.frontendmentor.io/solutions/connect-four-game-JTx24XdDIp)
 - Live Site URL: [Netlify](https://poetic-kashata-bd9f2e.netlify.app/)
 
 ## My process
