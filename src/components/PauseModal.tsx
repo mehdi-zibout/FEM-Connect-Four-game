@@ -2,7 +2,7 @@ import Card from "./Card";
 import Button from "./Button";
 import type { Dispatch, SetStateAction } from "react";
 
-function PauseModal({ restart, setShowMenu }: PauseModalProps) {
+function PauseModal({ restart, setShowMenu, quit }: PauseModalProps) {
   return (
     <Card
       className="mx-5 bg-purple w-[30rem] tablet:px-10 tablet:py-12 rounded-[40px] px-5 py-8"
@@ -19,7 +19,9 @@ function PauseModal({ restart, setShowMenu }: PauseModalProps) {
       >
         Restart
       </Button>
-      <Button bgColor="red">quit</Button>
+      <Button onClick={() => quit(0)} bgColor="red">
+        quit
+      </Button>
     </Card>
   );
 }
@@ -27,5 +29,6 @@ function PauseModal({ restart, setShowMenu }: PauseModalProps) {
 type PauseModalProps = {
   setShowMenu: Dispatch<SetStateAction<boolean>>;
   restart: Dispatch<SetStateAction<number>>;
+  quit: Dispatch<SetStateAction<number>>;
 };
 export default PauseModal;

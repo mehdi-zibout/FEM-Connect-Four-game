@@ -4,7 +4,7 @@ import MiniButton from "../components/MiniButton";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { ReactComponent as PlayerOne } from "../assets/player-one.svg";
 import { ReactComponent as PlayerTwo } from "../assets/player-two.svg";
-import { ReactComponent as RedsTurn } from "../assets/turn-background-red.svg";
+import { ReactComponent as CPU } from "../assets/cpu.svg";
 import Score from "../components/Score";
 import Board from "../components/Board";
 import TurnTimer from "../components/TurnTimer";
@@ -12,7 +12,7 @@ import Card from "../components/Card";
 import Modal from "../components/Modal";
 import PauseModal from "../components/PauseModal";
 
-function GameView({ restart }: GameViewProps) {
+function GameView({ restart, setView, isAgainstCPU }: GameViewProps) {
   const [showMenu, setShowMenu] = useState(false);
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(true);
   const [playersScore, setPlayersScore] = useState({ 1: 0, 2: 0 });
@@ -52,9 +52,9 @@ function GameView({ restart }: GameViewProps) {
               className="mr-5 tablet:mr-10"
             />
             <Score
-              name="player 2"
+              name={isAgainstCPU ? "cpu" : "player 2"}
               score={playersScore[2]}
-              Icon={PlayerTwo}
+              Icon={isAgainstCPU ? CPU : PlayerTwo}
               isReverse
             />
           </div>
@@ -91,6 +91,7 @@ function GameView({ restart }: GameViewProps) {
               </header>
             </div>
             <Board
+              isAgainstCPU={isAgainstCPU}
               key={gameNumber}
               isPlayer1Turn={isPlayer1Turn}
               setIsPlayer1Turn={setIsPlayer1Turn}
@@ -99,10 +100,10 @@ function GameView({ restart }: GameViewProps) {
             />
           </div>
           <Score
-            name="player 2"
+            name={isAgainstCPU ? "cpu" : "player 2"}
             className="ml-16 desktop:block hidden"
             score={playersScore[2]}
-            Icon={PlayerTwo}
+            Icon={isAgainstCPU ? CPU : PlayerTwo}
             isReverse
           />
         </div>
@@ -113,7 +114,9 @@ function GameView({ restart }: GameViewProps) {
               {isGameEnded === 1
                 ? "Player 1"
                 : isGameEnded === -1
-                ? "Player 2"
+                ? isAgainstCPU
+                  ? "CPU"
+                  : "Player 2"
                 : ""}
             </h2>
             <h3 className="uppercase text-hl">
@@ -130,6 +133,7 @@ function GameView({ restart }: GameViewProps) {
           </Card>
         ) : (
           <TurnTimer
+            isAgainstCPU={isAgainstCPU}
             pause={showMenu}
             setIsGameEnded={setIsGameEnded}
             isPlayer1Turn={isPlayer1Turn}
@@ -139,7 +143,11 @@ function GameView({ restart }: GameViewProps) {
       </div>
       {showMenu && (
         <Modal setShowModal={setShowMenu}>
-          <PauseModal setShowMenu={setShowMenu} restart={restart} />
+          <PauseModal
+            quit={setView}
+            setShowMenu={setShowMenu}
+            restart={restart}
+          />
         </Modal>
       )}
     </>
@@ -148,5 +156,7 @@ function GameView({ restart }: GameViewProps) {
 
 type GameViewProps = {
   restart: Dispatch<SetStateAction<number>>;
+  setView: Dispatch<SetStateAction<number>>;
+  isAgainstCPU: boolean;
 };
 export default GameView;

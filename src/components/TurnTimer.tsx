@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { ReactComponent as TurnBg } from "../assets/turn-background-red.svg";
 
-function TurnTimer({ isPlayer1Turn, setIsGameEnded, pause }: TurnTimerProps) {
+function TurnTimer({
+  isPlayer1Turn,
+  setIsGameEnded,
+  pause,
+  isAgainstCPU,
+}: TurnTimerProps) {
   const [timeleft, setTimeleft] = useState(30);
   useEffect(() => {
     if (timeleft > 0) {
@@ -32,7 +37,15 @@ function TurnTimer({ isPlayer1Turn, setIsGameEnded, pause }: TurnTimerProps) {
           isPlayer1Turn ? "text-white" : "text-black"
         }  text-center`}
       >
-        <h4 className="text-hxs uppercase">Your turn</h4>
+        <h4 className="text-hxs uppercase">
+          {isAgainstCPU
+            ? isPlayer1Turn
+              ? "your turn"
+              : "cpu's turn"
+            : isPlayer1Turn
+            ? "player 1's turn"
+            : "player 2's turn"}
+        </h4>
         <h3 className="text-hl">{timeleft}s</h3>
       </div>
     </div>
@@ -40,6 +53,7 @@ function TurnTimer({ isPlayer1Turn, setIsGameEnded, pause }: TurnTimerProps) {
 }
 
 type TurnTimerProps = {
+  isAgainstCPU: boolean;
   pause: boolean;
   isPlayer1Turn: boolean;
   setIsGameEnded: Dispatch<SetStateAction<boolean | 1 | -1>>;

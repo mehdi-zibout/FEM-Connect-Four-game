@@ -30,9 +30,15 @@ module.exports = {
           "0%": { transform: "translateY(-650%)" },
           "100%": { transform: "translateY(0)" },
         },
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "55%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
       },
       animation: {
         "slide-in": "slide-in 1s ease-out",
+        "fade-in": "fade-in 2s ease-out",
       },
       boxShadow: {
         card: "0px 10px 0px #000000",

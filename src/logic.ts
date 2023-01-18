@@ -1,5 +1,3 @@
-import { i } from "vitest/dist/index-50755efe";
-
 export function findWinner(
   gameState: number[][],
   isPlayer1Turn: boolean,
@@ -92,9 +90,62 @@ export function positionScore(
   return [min, max, []];
 }
 
-function calculateScore(arr: { value: number; i: number; j: number }[]) {
+export function calculateScore(arr: { value: number; i: number; j: number }[]) {
   return {
     indexes: arr.map((x) => [x.i, x.j]),
     value: arr.reduce((acc, curr) => acc + curr.value, 0),
   };
+}
+
+export function ithAvailable(gameState: number[][], j: number) {
+  for (let index = gameState.length - 1; index >= 0; index--) {
+    if (gameState[index][j] == 0) {
+      return index;
+    }
+  }
+}
+
+export function makeMove(
+  gameState: number[][],
+  isPlayer1Turn: boolean,
+  i: number,
+  j: number
+): [number[][], boolean, number, number] {
+  const newGameState = [];
+  for (let index = gameState.length - 1; index >= 0; index--) {
+    const newRow = [...gameState[index]];
+    if (index === i) {
+      newRow[j] = isPlayer1Turn ? 1 : -1;
+    }
+    newGameState.push(newRow);
+  }
+  return [newGameState.reverse(), isPlayer1Turn, i, j];
+}
+
+export function cpuMoves(gameState: number[][]) {
+  const evaluation: number[][] = [];
+  for (let j = 0; j < 7; j++) {
+    const i = ithAvailable(gameState, j);
+    if (i !== undefined) {
+      const [power, danger] = positionScore(gameState, i, j);
+      if (power === -3) {
+        return makeMove(gameState, false, i, j);
+      }
+      evaluation.push([power, danger, i, j]);
+    }
+    // make move in evaluation[2] evaluation[3]
+  }
+  const isThereDanger = evaluation.find((evalu) => evalu[1] === 3);
+  if (isThereDanger) {
+    return makeMove(gameState, false, isThereDanger[2], isThereDanger[3]);
+  }
+  const okayMoves = evaluation.filter(
+    (evalu) => evalu[0] === -2 || evalu[1] === 2
+  );
+  if (okayMoves.length > 0) {
+    let move = Math.floor(Math.random() * okayMoves.length);
+    return makeMove(gameState, false, okayMoves[move][2], okayMoves[move][3]);
+  }
+  let move = Math.floor(Math.random() * evaluation.length);
+  return makeMove(gameState, false, evaluation[move][2], evaluation[move][3]);
 }
