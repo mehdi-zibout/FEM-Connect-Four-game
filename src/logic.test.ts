@@ -6,7 +6,7 @@ it("finds winner", () => {
     [0, 0, 1, -1, 0, 0, 0],
     [0, 0, -1, 1, 0, 0, 0],
     [0, 0, 1, -1, 0, 0, 0],
-    [-1, 1, -1, 1, -1, 0, 0],
+    [-1, 1, 1, 1, -1, 0, 0],
     [-1, -1, 1, -1, 1, 0, 0],
     [-1, -1, -1, 1, 1, 0, 0],
   ];
@@ -17,8 +17,8 @@ it("finds winner", () => {
   const result1 = findWinner(data, !isPlayer1Turn, 2, 0);
   const result2 = findWinner(data, !isPlayer1Turn, 5, 5);
   const result3 = findWinner(data, !isPlayer1Turn, 5, 6);
-  expect(result).toBe(-1);
-  expect(result1).toBe(1);
-  expect(result2).toBe(1);
-  expect(result3).toBe(0);
+  expect(result.winner).toBe(-1);
+  expect(result1.winner).toBe(1);
+  expect(result2.winner).toBe(1);
+  expect(result3.winner).toBe(0);
 });

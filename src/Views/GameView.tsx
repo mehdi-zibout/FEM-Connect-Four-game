@@ -7,9 +7,11 @@ import Score from "../components/Score";
 import Board from "../components/Board";
 import { useState } from "react";
 import TurnTimer from "../components/TurnTimer";
+import Card from "../components/Card";
 
 function GameView() {
   const [isPlayer1Turn, setIsPlayer1Turn] = useState(false);
+  const [isGameEnded, setIsGameEnded] = useState<boolean | -1 | 1>(false);
   return (
     <div className="pt-12 px-5 tablet:px-16 desktop:pt-14 desktop:px-0 tablet:pt-8 w-full h-full relative">
       {/* TABLET VIEW */}
@@ -51,6 +53,8 @@ function GameView() {
           <Board
             isPlayer1Turn={isPlayer1Turn}
             setIsPlayer1Turn={setIsPlayer1Turn}
+            isGameEnded={isGameEnded}
+            setIsGameEnded={setIsGameEnded}
           />
         </div>
         <Score
@@ -62,8 +66,18 @@ function GameView() {
         />
       </div>
       {/* SHARED */}
-      <TurnTimer isPlayer1Turn={isPlayer1Turn} />
-      <div className="absolute  bottom-0 w-full h-[calc(100%-570px)] tablet:h-[calc(100%-790px)] desktop:h-[calc(100%-700px)] bg-dark-purple rounded-t-[60px] -mx-5 tablet:-mx-16 desktop:-mx-0"></div>
+      {isGameEnded ? (
+        <Card className="relative z-10 py-4 px-[4.5rem] bg-white text-center mx-auto right-0 left-0 w-fit -top-9 tablet:-top-[155px] desktop:-top-16">
+          <h2 className="uppercase text-hxs">
+            {isGameEnded === 1 ? "Player 1" : "Player 2"}{" "}
+          </h2>
+          <h3 className="uppercase text-hl">wins</h3>
+          <MiniButton>play again</MiniButton>
+        </Card>
+      ) : (
+        <TurnTimer isPlayer1Turn={isPlayer1Turn} />
+      )}
+      <div className="absolute  bottom-0 w-full h-[calc(100%-570px)] tablet:h-[calc(100%-790px)] desktop:h-[calc(100vh-700px)] bg-dark-purple rounded-t-[60px] -mx-5 tablet:-mx-16 desktop:-mx-0"></div>
     </div>
   );
 }
